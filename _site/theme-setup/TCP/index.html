@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<!--
+====================================================
+    __  ____  ______________  _______ ___    __ 
+   / / / /  |/  / ____/   \ \/ / ___//   |  / / 
+  / /_/ / /|_/ / /_  / /| |\  /\__ \/ /| | / /  
+ / __  / /  / / __/ / ___ |/ /___/ / ___ |/ /___
+/_/ /_/_/  /_/_/   /_/  |_/_//____/_/  |_/_____/
+                                                     
+====================================================
+Owner Name: Hossain Mohammad Faysal
+Profile: https://www.facebook.com/hmfaysal
+Version: 1.1
+Description: Awesome dude, awesome life
+====================================================
+-->
+<head>
+<meta charset="utf-8">
+<title>TCP协议的那些事（总结篇） &#8211; LastDay的博客</title>
+<meta name="description" content="Sleek, intuitive, and powerful mobile first Jekyll theme">
+<meta name="keywords" content="TCP/IP">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP协议的那些事（总结篇）">
+<meta property="og:description" content="Sleek, intuitive, and powerful mobile first Jekyll theme">
+<meta property="og:url" content="http://localhost:4000/theme-setup/TCP">
+<meta property="og:site_name" content="LastDay的博客">
+<meta property="og:image" content="http://localhost:4000/images/back.jpg">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/theme-setup/TCP">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="LastDay的博客 Feed">
+<link rel="author" href="https://plus.google.com/u/0/102602916593522619858?rel=author">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/style.css" />
+
+<div class="search-wrapper">
+    <div class="search-form">
+        <input type="text" class="search-field" placeholder="Search...">
+        <i class="icon-remove-sign"></i>
+        <ul class="search-results post-list"></ul><!-- /.search-results -->
+    </div><!-- /.search-form -->
+</div><!-- ./search-wrapper -->
+
+
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+<body class="post-template" itemscope itemtype="http://schema.org/WebPage">  
+<div id="fade"></div>
+<a id="slide" class="animated fade"></a>
+<aside id="sidebar">
+    <nav id="navigation">
+    <h2>MENU</h2>
+    <hr>
+
+            <li>
+                    <a href="http://localhost:4000/">Home</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/categories">Categories</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/tags">Tags</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/about">About</a>
+                 </li>
+            
+           <li><a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
+    </nav>
+    
+    
+</aside>
+<header id="masthead" class="blog-background overlay align-center align-middle animated from-bottom"  style="background-image: url(http://localhost:4000/images/back.jpg)" itemscope itemtype="http://schema.org/Organization">
+
+
+    <button class="menu-button animated fade dosearch">
+        <i class="icon-search"></i>
+    </button>
+
+
+    <div class="inner">
+        <div class="container">
+            <a class="brand" href="http://localhost:4000" role="banner" itemprop="url">
+
+                
+
+            <h1 class="blog-title light" itemprop="name">
+                LastDay的博客
+            </h1>
+                
+            </a>
+        </div>
+    </div>
+    
+    
+    
+    
+</header>
+<div id="main" class="content" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+    <div class="container">
+        <div class="row">
+            <article class="post col-md-8 col-md-offset-2 hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            
+            
+            
+            
+            
+                    <header class="post-header entry-header">
+                    
+                        
+                        <h1 class="post-title text-center hyper lighter bordered-bottom entry-title" itemprop="headline">TCP协议的那些事（总结篇）</h1>
+                        
+                        <div class="cursive" style="color: #000; font-style:italic;">Sleek, intuitive, and powerful mobile first Jekyll theme</div>
+                        <div class="post-info text-center small">
+                            <span class="entry-date date published updated"><time datetime="2015-10-06T00:00:00-04:00" class="post-time" itemprop="datePublished">06 Oct 2015</time><span>
+                            in <span class="post-tags"><a href="http://localhost:4000/categories/index.html#theme-setup" data-toggle="tooltip" title="Other posts from the Theme-setup category" rel="tag">Theme-setup</a></span>&nbsp;<span class="post-tags"><i class="icon-time"></i>&nbsp;1 minute read</span>
+                        </div>
+                    </header>
+                    <div class="post-body bordered-bottom" itemprop="description">
+                        
+                        <h2 id="section">传输层概述</h2>
+<p>TCP协议特点：面向连接、字节流、可靠传输
+### 面向链接：
+1.使用TCP协议的双方必须先建立连接，并且双方都必须分配相应的内核资源。TCP的连接是全双工的，也就是说双方可以根据一个连接进行读写操作。</p>
+
+<h3 id="section-1">字节流：</h3>
+
+<p>1.当发送方应用多次进行写操作的时候，TCP发送模块会先把数据放在发送缓冲区中，当TCP发送模块真正发送的时候，这些在发送缓冲区中的数据才可能被封装成一个或多个报文段发出。所有根据以上结论，应用程序执行的写操作的次数和TCP发送的报文段个数没有对应的数量关系。</p>
+
+<p>2.当接收端收到一个或多个报文段数据后，TCP模块必须把它们携带的应用层数据必须按照报文段序号把它们放到TCP接受缓冲区中。同时通知应用程序读取数据，这样应用程序就可以一次读出数据或多次读出数据，这取决于应用程序读缓冲区的大小。根据以上结论得出，TCP读取操作的次数跟接收报文段个数也没有固定的关系</p>
+
+<p><strong>总结：发送端执行的写操作次数与接受端的读操作次数没有任何数量关系，应用程序的发送和接收是没有边界限制的，UDP就不是这样，在这里不详细说了</strong></p>
+
+<p>如图TCP字节流服务过程：</p>
+
+<p><img src="http://img.blog.csdn.net/20150801192657747" alt="字节流传输" /></p>
+
+<p>以上就是字节流服务过程：</p>
+
+<p>从图中我们就可以看见，发送短调用的发送次数，和接收短的接受次数并不一样。所有的数据都是先进入缓冲区，在进行操作。封装成报文段进行发送或接收。</p>
+
+<h3 id="section-2">可靠传输</h3>
+
+<p>TCP协议是可靠的传输协议，支持这种可靠传输的机制有：</p>
+
+<ul>
+  <li>发送应答机制：也就是说发送端发送的每个数据报文段都必须得到接收方的应答。</li>
+  <li>超时从穿机制：也就是说发送端在发送报文段数据后，本身就启动计时器，如果在规定时间内没有接到接受端的应答，那么就会重新发送这段数据。</li>
+</ul>
+
+<h2 id="tcptcptcp">要了解TCP在整个TCP协议栈中的作用我们需要分析一下TCP头部结构：</h2>
+
+<p><img src="http://img.blog.csdn.net/20150801194315541" alt="这里写图片描述" /></p>
+
+<ul>
+  <li>头部结构出现在每个TCP报文段中</li>
+  <li>头部结构包括20个字节的固定结构和40个字节的头部选项字段</li>
+  <li>16位源端口：该报文段数据来自哪里？</li>
+  <li>16位目的端口：该报文段数据传给哪个上层协议或应用程序。客户端基本使用临时端口号，而服务器选择知名的服务端口号，在Linux下，所有的知名服务端口号都定义在/etc/services文件夹下。
+HTTP服务端口号为80，DNS服务端口号为53，FTP服务器端口为21。</li>
+  <li>32位序号：在tcp一次通信中（从建立连接到断开），在TCP协议在发送数据时会根据实际传输能力把数据分割成若干数据段，这32位序列号就是为这个数据段打上标记。</li>
+  <li>32位确认号：如果接收端没有接收到某一段数据会告诉发送端：“我没收到这段数据 请重新发送” 所以用确认号能保证数据的完整性</li>
+  <li>4位头部长度：标识有多少个4字节</li>
+  <li>URG：紧急指针是否有效</li>
+  <li>ACK：表示确认号是否有效</li>
+  <li>PSH：提示接收端应用程序应该立即从接收缓冲区中读取数据，为接收后续数据腾出空间。</li>
+  <li>RST：要求对方重新建立连接。</li>
+  <li>SYN：请求建立一个连接</li>
+  <li>FIN：同对方本端要关闭连接。</li>
+  <li>16位窗口大小：TCP流量控制。</li>
+  <li>16位校验和：接受端对tcp数据进行CRC算法检验tcp报文段在发送的过程中属否损坏。（包括数据部分）</li>
+  <li>16位紧急指针：表示最后一个紧急数据的下一字节的序号。</li>
+  <li>头部选项：最多包涵40个字节</li>
+</ul>
+
+<p><img src="http://img.blog.csdn.net/20150801201537796" alt="这里写图片描述" /></p>
+
+<pre><code>1.kind：说明选项类型。
+
+2.length：表示该选项的总长度。
+
+3.info：选项的具体信息。
+</code></pre>
+
+<p>kind类型如图所示：</p>
+
+<p><img src="http://img.blog.csdn.net/20150801201650363" alt="这里写图片描述" /></p>
+
+<h1 id="tcp">TCP连接状态转移过程</h1>
+
+<h2 id="section-3">服务器典型状态转移过程</h2>
+
+<p>1、首先服务器通过LISTEN系统调用，进入LISTEN状态，表示被动打开，被动等待客户端的连接，服务器监听到某个客户端的连接请求后，这个连接请求被称为同步报文段。之后TCP会将其放到内核等待队列中，并向客户端发送带SYN的确认报文段，之后该连接就会处于SYN_RCVD状态。那么这个时候如果服务器收到了客户端的ACK确认报文段，服务器进入ESTABLISHED，这个状态可以让双方进行数据传输。</p>
+
+<h2 id="section-4">服务器关闭状态的转移过程</h2>
+
+<p>1、当客户端主动关闭连接时，客户端主动调用CLOSE，服务器接收到客户端的关闭报文段后，服务器返回ACK确认报文段，是连接进入CLOSE_WAIT状态。这个状态的就是跟字面意思一样，等待服务器关闭连接。这个时候服务器也会给客户端发送一个结束报文段，这个时候进入LAST_ACK。接下来就是等待客户端结束连接的最后一次确认。</p>
+
+<h2 id="section-5">客户端连接状态转移过程</h2>
+
+<p>1、首先客户端通过CONNECT系统调用，给服务器发送同步报文段。使系统进入YSN_SENT状态。接下来会有两种可能，如果连接失败，该连接将会恢复到CLOSED状态，如果该客户多收到服务器返回的同步报文段，确认报文段，说明该客户端成功连接服务器。连接转移到ESTABLISHED状态（功能通上）</p>
+
+<h2 id="section-6">当客户端进行关闭时的状态转移过程</h2>
+
+<p>1、当客户端关闭时，客户端发送一个关闭连接报文段，同时连接进入SFIN_WAIT_1状态，如果接收到服务端ACK确认，连接状态进入FIN_WAIT_2状态。当服务端也发送了结束报文段，那么客户端也会发送ACK确认，客户端进入TIME_WAIT状态。</p>
+
+<h3 id="tcp-1">如图为TCP连接状态转移图：</h3>
+
+<p><img src="http://img.blog.csdn.net/20150802110224571" alt="这里写图片描述" /></p>
+
+<p>参照图片详细了解连接转移过程</p>
+
+<h1 id="tcp-2">TCP建立连接和关闭连接的过程</h1>
+
+<p>首先我们来回顾下我们以前了解过的，TCP头部结构有6个标识位</p>
+
+<ul>
+  <li>SYN：仅在三次握手建立连接时有效，表示同步报文段。</li>
+  <li>ACK：对TCP请求的确认标志。</li>
+  <li>FIN：标志用来结束一个TCP连接，标识此报文段是一个结束报文段</li>
+</ul>
+
+<p>以上就是我们讲到以下内容的时候需要用到的知识点</p>
+
+<h2 id="section-7">三次握手建立连接</h2>
+
+<p>开始介绍一下三次握手的过程：</p>
+
+<ul>
+  <li>第一次握手：其实是客户端发送一个带有SYN的数据报文段发送给服务器，对应在图片中就是从主机A－&gt;主机B（SYN＝1，seq＝i），seq为对应序列号为i。之后主机A进入SYN_SENT状态。同时等待服务器的确认</li>
+  <li>第二次握手：服务器收到同步报文段后（也就是带有SYN的同步报文段），必须确定客户的同步报文段。然后自己也发送一个带有SYN的报文段，对应到图片中也就死第二个报文段，其中SYN＝1，表示这是一个同步报文段，ACK＝1，表示这是一个确认报文段，确认序号值为i+1，序号值为j。</li>
+  <li>第三次握手：这次就是客户端收到确认同步报文段后，它向服务器发送确认包，对应到图片中也就是第三个报文段，ack＝1也就是表示这是一个确认报文段，确认序号为j+1</li>
+</ul>
+
+<p>三次握手建立后，客户端与服务器开始传送数据。</p>
+
+<p>三次握手示意图：</p>
+
+<p><img src="http://img.blog.csdn.net/20150803153852016" alt="这里写图片描述" /></p>
+
+<h2 id="section-8">四次握手关闭连接</h2>
+
+<p>接下来，我们来介绍下四次握手关闭</p>
+
+<ul>
+  <li>第一次握手：表示客户端A发送给服务器一个带有SYN的结束报文段，用来关闭客户端A到服务端B的数据传送，对应到图片中也就是第一个报文段，FIN＝1，seq＝i，表示一个结束报文段</li>
+  <li>第二次握手：服务端B接收到这个结束报文段后，它返回一个确认报文段，对应到图片中就是第二个确认报文段。其中ACK＝1，ack＝i+i，表示一个确认报文段，确认序号为i+1.</li>
+  <li>第三次握手：服务器B关闭与客户端A的连接，他发送一个带有SYN结束报文段，对应图片上第三个报文段，其中  SYN＝1，seq＝j，表示结束报文段，序号为j。</li>
+  <li>第四次握手：客户端A返回一个确认报文段，其中确认序号为j+1，对应图片上为第四个报文段，ACK＝1，ack＝j+1。</li>
+</ul>
+
+<h3 id="section-9">总结：为什么建立连接需要三次握手？为什么关闭连接需要四次握手？为什么建立连接需要三次握手呢？</h3>
+<ul>
+  <li>
+    <p>接受连接缺需要4次握手，LISTEN状态下建立连接后，它可以把同步报文段和确认报文段合并成一个报文段来进行发送，确认报文段起到应达作用，同步报文段起到同步作用，也就是三次握手中的第二个报文段其实是发挥了两个作用</p>
+  </li>
+  <li>
+    <p>在关闭连接时，当收到对方的结束报文段时，表示对方没有数据发给你了，但是自己的数据未必全部发送完毕，所以你可能还需要继续发送一些数据之后在发送结束报文段给对方了表示你同意现在可以断开连接，所以关闭连接需要四次握手</p>
+  </li>
+  <li>
+    <p>如果把三次握手改成两次握手，就有可能发生死锁。关于死锁，（搜索一下）</p>
+  </li>
+</ul>
+
+<p>四次握手示意图：</p>
+
+<p><img src="http://img.blog.csdn.net/20150803153635912" alt="这里写图片描述" /></p>
+
+<h2 id="timewait">TIME_WAIT状态的含义</h2>
+
+<p>在TCP详解（二）中，提到过，当客户端收到服务器的结束报文段后，不会立即进入CLOSED状态，而是转移到TIME_WAIT状态下，在这个状态下，客户端要等待一段2倍的MSL（报文段最大生存时间）时间。等待这个时间后才能完全关闭。TIME_WAIT状态的持续时间是MSL的2倍，这就足以让某个方向上的分组最多存活msl秒即被丢弃，另一个方向上的应答最多存活msl秒也被丢弃。 通过实施这个规则，我们就能保证每成功建立一个TCP连接时。来自该链接先前化身的重复分组都已经在网络中消逝了。</p>
+
+<h3 id="timewait-1">TIME_WAIT状态存在的原因有两点：</h3>
+<ul>
+  <li>
+    <p>可靠的终止TCP连接:</p>
+
+    <p>例如在四次握手时，如果第三个报文段丢失，这个时候服务器将重新发送这个报文段，所以客户端需要停留在摸个状态来处理重复信息。否则客户端将会向服务器发送复位报文段，让服务器误认为这是一个错误</p>
+  </li>
+  <li>
+    <p>保证延迟来的TCP报文段有足够的时间去识别并丢弃:</p>
+
+    <p>在Linux系统上，一个TCP端口不能被同时打开多次，当一个TCP连接处于TIME_WAIT状态时，我们将无法立即使用该连接占用的端口建立一个新连接。
+  但是我们反过来考虑，如果不存在这种机制，那么服务器刚关闭连接，又建立了一个类似的连接，成为“原链接化身”，这个“化身“就有可能就收到属于原来连接的数据报文段，这种情况是不允许出现的。</p>
+  </li>
+</ul>
+
+<h3 id="imewait">IME_WAIT状态过多的缺点：</h3>
+
+<ul>
+  <li>根据上诉，我们可以了解到，如果IME_WAIT状态过多会占用大量的端口号，占用系用资源</li>
+</ul>
+
+<h3 id="imewait-1">IME_WAIT状态过多的处理方法</h3>
+
+<ul>
+  <li>
+    <p>修改内核参数</p>
+  </li>
+  <li>
+    <p>尽可能被动关闭连接</p>
+  </li>
+  <li>
+    <p>将长连接修改为短连接</p>
+  </li>
+  <li>
+    <p>通过套接字选项尽可能回避IME_WAIT状态带来的负面影响</p>
+  </li>
+</ul>
+
+<h1 id="rst">RST复位报文段</h1>
+
+<h2 id="rst-1">RST复位报文段的作用</h2>
+
+<p>曾经在<a href="http://blog.csdn.net/lastdays_l/article/details/47189621">TCP协议详解（一）</a>中介绍了TCP的头部信息，头部中有6位的标识字段，这6位中有一位时RST标志位。如果在TCP某一个报文段中，RST的标志位＝1，就说明这个报文段是RST报文段，也就是复位报文段，在某些情况下，TCP连接的一端会像另一端发送携带RST数据报文段，用来通知对方关闭连接或者重新连接。</p>
+
+<p>RST报文段是请求对方连接，发送此报文段的时机有：</p>
+
+<ul>
+  <li>在连接建立时</li>
+  <li>在中间发送数据时</li>
+  <li>在连接关闭时</li>
+</ul>
+
+<p>以上三种情况都有可能发送RST复位报文段。</p>
+
+<h2 id="rst-2">发送RST报文段情况</h2>
+
+<h3 id="rst-3">RST复位报文段出现的原因很多，在网路编程中，也很难排查原因在哪？所以列出一些常见的原因，分享给大家：</h3>
+
+<ul>
+  <li>端口未打开：如果服务器程序端口位打开，而客户端来进行连接。</li>
+  <li>请求超时：例如一个客户端连接服务器时，Connect系统调用返回时失败，出现错误信息，但是这个时候使用ping命令进行测试没有出现丢包现象，如果在使用抓包工具查看，客户端收到服务器端的同步报文段之后，发送了RST复位报文段，这就有可能是请求超时的原因</li>
+  <li>提前关闭：如果服务端关闭或者异常终止连接，而且由于网络故障原因，对方没有接收到结束报文段没这个时候客户端还维护着原来的连接，这个时候我们把服务器重新启动，但是次服务器已经没有任何该连接的信息了。如果此时客户端向服务器写一个数据，对方就会回应一个RST复位报文段</li>
+  <li>在一个已关闭的Socket上收到数据：这种情况看见的不多，比如说连接关闭后，网络中游离的数据包到达目标段，此时目标段发现这个连接已经关闭，复位报文段就会发送到另一个连接。</li>
+  <li>异常终止一个连接：在数据交换完成之后，发送数据报文段。</li>
+  <li>向处于LISTEN状态的端口发送数据：会收到对端发送的RST复位报文段</li>
+</ul>
+
+<h3 id="section-10">了解以上内容有助于网络编程的调试。</h3>
+
+<h1 id="tcp-3">TCP可靠传输机制</h1>
+<p>##TCP超时重传</p>
+
+<p>如果网络异常救出出现超时或者丢包，TCP模块必须能够重传在超时时间内对方未收到的TCP报文段。</p>
+
+<ul>
+  <li>TCP模块为每个TCP报文段维护一个重传定时器：该定时器在TCP报文段第一次被发送时启动，如果超时时间内没收到接收方的应答，TCP模块将重传TCP报文段，并重置定时器</li>
+  <li>如果超时，则进行重传，重新设置定时器</li>
+</ul>
+
+<h2 id="tcp-4">TCP拥塞控制</h2>
+
+<p>TCP模块的任务</p>
+
+<ul>
+  <li>提高网络利用率</li>
+  <li>降低丢包率</li>
+  <li>拥塞控制</li>
+</ul>
+
+<p>其中拥塞控制，还有TCP的流量控制，这种控制机制都是为了TCP的可靠传输设置的，拥塞控制的任务是确保子网能承载所到达的流量。这是一个全局性问题，涉及到各方面的行为（刚兴趣可以自己去搜索下，这里就不做过多介绍）。</p>
+
+<p>关于拥塞控制我们进行详细的讲解：</p>
+
+<p>###拥塞控制的反馈过程：</p>
+
+<p><img src="http://img.blog.csdn.net/20150806104035106" alt="这里写图片描述" /></p>
+
+<p>拥塞控制的最终受控变量是发送端向网络中一次连续写入的数据量，我们称为我们称为发送窗口。不过发送窗口最终以TCP报文段来发送数据，进而发送端口就限定了连续发送的TCP报文段的数量，如图所示，发送窗口被称为SWND，这些报文段的最大长度被称为MSS发送端需要合理的选择发送窗口，如果发送窗口太小，就会出现网络延迟现象，如果发送窗口过大，就容易导致网络拥塞。接收方可以通过接收通告收窗口来控制发送端的发送窗口，但是这看起来也不够，所以在发送端引入一个称为拥塞窗口的状态变量，拥塞窗口简称CWND，接收通告窗口简称RWND。图像中就显示了拥塞控制的闭环反馈控制。</p>
+
+<p>###几种拥塞控制的方法:</p>
+
+<ul>
+  <li>TCP慢启动</li>
+  <li>拥塞避免</li>
+  <li>快速重传</li>
+  <li>快速恢复</li>
+</ul>
+
+<h3 id="section-11">慢启动，拥塞避免图：</h3>
+
+<p><img src="http://img.blog.csdn.net/20150806104111167" alt="这里写图片描述" /></p>
+
+<p>我们知道那个发送端维持一个拥塞窗口的状态变量，拥塞窗口简称CWND，拥塞窗口的大小取决于网络的拥塞程度，并且动态的变化。CWND的处理原则就是只要网络中没有出现拥塞现象，拥塞窗口就在大一些，以便把更多的分组发送出去。只要网络中出现拥塞，拥塞窗口就减少一些。以减少注入到网络分组中的数量。</p>
+
+<p>我们现在来分析拥塞控制的算法：</p>
+
+<ul>
+  <li>
+    <p>慢启动：当主机开始发送数据时，如果把大量的字节注入到网络，那么就有可能引起网络拥塞。因为我们现在并不清楚网络的负载情况。所以比较好的方法就是自动去探测一下，由小到大满满增大拥塞窗口的数值，通常在刚刚开始发送报文段的时候，先把拥塞端口设置为一个最大报文段，而在每个在收到新的报文段的时候，把拥塞窗口的大小加1，按照指数规律增长，也就是增大一个最大报文段的数值。我们用同样的方法逐渐增大发送端的拥塞窗口。可以使分组注入到网络中的数据更加合理。</p>
+
+    <p>对应到图示中，横坐标从0－&gt;3都是满启动的状态。我们为了防止因为增大造成的网络拥塞，我们还需要设置一个满启动的ssthresh值，关于慢启动的ssthresh用法就是如果拥塞窗口小于ssthresh值，就应用慢启动算法。如果拥塞窗口大于ssthresh值，就停止应用慢启动算法。而改用拥塞避免算法</p>
+  </li>
+  <li>
+    <p>拥塞避免：拥塞避免算法为了让拥塞窗口缓慢的增长，就是每经过一个往返的时间，就把发送方的拥塞窗口加1，而不是成倍增长，这样拥塞窗口是按照线性规律缓慢增长。对应到图像中就是那个明显的拐点以后，都是拥塞避免的算法执行。</p>
+  </li>
+</ul>
+
+<p>仅仅应用 慢启动和拥塞控制，不可能达到控制网络拥塞</p>
+
+<h3 id="section-12">接下来介绍快速重传，快速恢复</h3>
+
+<p>在很多情况下，TCP发送端都可以接受到重复的确认报文段，例如TCP报文段缺失等等，发送端如果连接接收到三个重复的确认报文段，就可以判断网络中发生了拥塞。这个时候使用快速重传，快速恢复算法。快速重传算法我先要求接受端每收到一个失去的报文到，就立即发送重传确认。</p>
+
+<p><strong>拥塞发生或有三个处理不步骤：</strong></p>
+
+<p>拥塞发生后的处理过程：</p>
+
+<ul>
+  <li>收到三个重复的确认处理过程：当收到三个重复的报文段时，重新计算满启动的ssthresh值，就是将ssthresh值减半，然后立即重传重传报文段。</li>
+  <li>收到1个重复确认处理过程：将慢启动的ssthresh值减半后，开始执行拥塞避免算法，而不是刚刚提到的慢启动算法。</li>
+  <li>收到新数据后的处理过程：重新设置慢启动的ssthresh值，使得拥塞窗口等于当前设置的ssthresh值。</li>
+</ul>
+
+
+                        <br>
+                    
+                    
+                    <div class="entry-tags text-center">
+                    
+                        <i class="icon-tags"></i>&nbsp;Tagged with <a href="http://localhost:4000/tags/index.html#TCP/IP" data-toggle="tooltip" title="Posts tagged with TCP/IP" rel="tag">TCP/IP</a>
+                    
+                    </div>
+                    
+                    </div>
+        </div>
+                    <footer class="post-footer entry-meta">
+                        
+                        <div class="post-author text-center">                       
+	        <img src="http://localhost:4000/images/hmfaysal.jpg" alt="LastDay's photo" itemprop="image" class="post-avatar img-circle img-responsive"/>    
+	    <h4 class="bordered-bottom vcard author" itemprop="author" itemscope itemtype="http://schema.org/Person">By <span itemprop="name" class="fn"><a href="http://localhost:4000/about" title="About LastDay" itemprop="url">LastDay</a></span></h4>
+	    <p>一个单线程的iOS开发男孩</p>
+</div> 
+                        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+                    </footer>
+            </article>
+    </div>
+</div>
+
+<footer id="footer"  class="blog-background overlay text-center align-middle animated from-top" style="background-image: url(http://localhost:4000/images/back.jpg)" >
+
+
+    <div class="inner">
+        <div class="container">
+
+            <ul class="social-icons">
+            
+            <li>
+                <a href="http://facebook.com/hmfaysal" data-toggle="tooltip" title="LastDay on Facebook" target="_blank">
+                    <i class="icon-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://plus.google.com/u/0/102602916593522619858" data-toggle="tooltip" title="LastDay on Google+" target="_blank">
+                    <i class="icon-google-plus"></i>
+                </a>
+            </li>
+            
+            
+            
+            
+            <li>
+                <a href="http://github.com/https://github.com/MrLoong" data-toggle="tooltip" title="LastDay on Github" target="_blank">
+                    <i class="icon-github"></i>
+                </a>
+            </li>
+        </ul>
+            <div>
+                <a href="http://localhost:4000/about/">LastDay</a> &copy; 2015 &bull; All rights reserved.
+            </div>
+            <ul class="menu-items">
+            
+            <li>
+                
+                    <a href="http://localhost:4000/"><i class="icon-home"></i></a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/categories">Categories</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/tags">Tags</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/about">About</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li><a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
+        </ul>
+        </div>
+    </div>
+    
+    
+    
+</footer>
+
+    
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/waypoints.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/script.js"></script>
+<script type='text/javascript'>console.log("HMFaysal Omega Theme Version 2.0");</script>
+<script type='text/javascript'>console.log("https://alum.mit.edu/www/hmfaysal");</script>
+<script type='text/javascript'>$(document).ready(function(){$(".time").text(function(a,b){return Math.round(parseFloat(b))})});</script>
+
+<script type="text/javascript">
+
+/*      Slides       */
+
+$("a#slide").click(function(){
+    $("#sidebar,body,a#slide,#fade").addClass("slide")
+});
+
+$("#fade,#header,#posts-container").click(function(){
+    $("#sidebar,body,a#slide,#fade").removeClass("slide")
+});
+
+$("a#click-filter").click(function(){
+    $("#slide-filter").slideToggle("medium");
+    $("#slide-pages").slideOut("medium");
+});
+
+$("a#click-pages").click(function(){
+    $("#slide-pages").slideToggle("medium");
+    $("#slide-filter").slideOut("medium");
+});
+
+/*      End-Slides      */
+
+</script>
+
+
+<!-- Jekyll Simple Search option -->
+<script>
+  $(document).ready(function() {
+      $('.search-field').simpleJekyllSearch({
+          jsonFile : 'http://localhost:4000/search.json',
+          searchResults : '.search-results',
+          template : '<li><article><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></article></li>',
+          noResults: '<p>Nothing found.</p>'
+        });
+  });
+
+  (function( $, window, undefined ) {
+    
+     var bs = {
+          close: $(".icon-remove-sign"),
+          searchform: $(".search-form"),
+          canvas: $("body"),
+          dothis: $('.dosearch')
+      };
+    
+    bs.dothis.on('click', function() {
+      $('.search-wrapper').css({ display: "block" });
+      bs.searchform.toggleClass('active');
+      bs.searchform.find('input').focus();
+      bs.canvas.toggleClass('search-overlay');
+    });
+    
+      bs.close.on('click', function() {
+        $('.search-wrapper').removeAttr( 'style' );
+        bs.searchform.toggleClass('active');
+        bs.canvas.removeClass('search-overlay');
+    });
+  })( jQuery, window );
+</script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl = 
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-39365944-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'LastDay'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+</body>
+</html>

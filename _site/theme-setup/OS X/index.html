@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<!--
+====================================================
+    __  ____  ______________  _______ ___    __ 
+   / / / /  |/  / ____/   \ \/ / ___//   |  / / 
+  / /_/ / /|_/ / /_  / /| |\  /\__ \/ /| | / /  
+ / __  / /  / / __/ / ___ |/ /___/ / ___ |/ /___
+/_/ /_/_/  /_/_/   /_/  |_/_//____/_/  |_/_____/
+                                                     
+====================================================
+Owner Name: Hossain Mohammad Faysal
+Profile: https://www.facebook.com/hmfaysal
+Version: 1.1
+Description: Awesome dude, awesome life
+====================================================
+-->
+<head>
+<meta charset="utf-8">
+<title>OS X内存管理：从源码进行分析（一） &#8211; LastDay的博客</title>
+<meta name="description" content="Sleek, intuitive, and powerful mobile first Jekyll theme">
+<meta name="keywords" content="iOS内存管理">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS X内存管理：从源码进行分析（一）">
+<meta property="og:description" content="Sleek, intuitive, and powerful mobile first Jekyll theme">
+<meta property="og:url" content="http://localhost:4000/theme-setup/OS%20X">
+<meta property="og:site_name" content="LastDay的博客">
+<meta property="og:image" content="http://localhost:4000/images/back.jpg">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/theme-setup/OS%20X">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="LastDay的博客 Feed">
+<link rel="author" href="https://plus.google.com/u/0/102602916593522619858?rel=author">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/style.css" />
+
+<div class="search-wrapper">
+    <div class="search-form">
+        <input type="text" class="search-field" placeholder="Search...">
+        <i class="icon-remove-sign"></i>
+        <ul class="search-results post-list"></ul><!-- /.search-results -->
+    </div><!-- /.search-form -->
+</div><!-- ./search-wrapper -->
+
+
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+<body class="post-template" itemscope itemtype="http://schema.org/WebPage">  
+<div id="fade"></div>
+<a id="slide" class="animated fade"></a>
+<aside id="sidebar">
+    <nav id="navigation">
+    <h2>MENU</h2>
+    <hr>
+
+            <li>
+                    <a href="http://localhost:4000/">Home</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/categories">Categories</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/tags">Tags</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/about">About</a>
+                 </li>
+            
+           <li><a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
+    </nav>
+    
+    
+</aside>
+<header id="masthead" class="blog-background overlay align-center align-middle animated from-bottom"  style="background-image: url(http://localhost:4000/images/back.jpg)" itemscope itemtype="http://schema.org/Organization">
+
+
+    <button class="menu-button animated fade dosearch">
+        <i class="icon-search"></i>
+    </button>
+
+
+    <div class="inner">
+        <div class="container">
+            <a class="brand" href="http://localhost:4000" role="banner" itemprop="url">
+
+                
+
+            <h1 class="blog-title light" itemprop="name">
+                LastDay的博客
+            </h1>
+                
+            </a>
+        </div>
+    </div>
+    
+    
+    
+    
+</header>
+<div id="main" class="content" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+    <div class="container">
+        <div class="row">
+            <article class="post col-md-8 col-md-offset-2 hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            
+            
+            
+            
+            
+                    <header class="post-header entry-header">
+                    
+                        
+                        <h1 class="post-title text-center hyper lighter bordered-bottom entry-title" itemprop="headline">OS X内存管理：从源码进行分析（一）</h1>
+                        
+                        <div class="cursive" style="color: #000; font-style:italic;">Sleek, intuitive, and powerful mobile first Jekyll theme</div>
+                        <div class="post-info text-center small">
+                            <span class="entry-date date published updated"><time datetime="2015-10-05T00:00:00-04:00" class="post-time" itemprop="datePublished">05 Oct 2015</time><span>
+                            in <span class="post-tags"><a href="http://localhost:4000/categories/index.html#theme-setup" data-toggle="tooltip" title="Other posts from the Theme-setup category" rel="tag">Theme-setup</a></span>&nbsp;<span class="post-tags"><i class="icon-time"></i>&nbsp;1 minute read</span>
+                        </div>
+                    </header>
+                    <div class="post-body bordered-bottom" itemprop="description">
+                        
+                        <p>通过对《Objective-C高级编程》的学习，就来总结一下。</p>
+
+<p>在Objective-C中的内存管理中，autorelease就是自动释放，看上去很像ARC对不对？但是呢，却并不是，其实有点像我们曾经在学习C语言中的局部变量</p>
+
+<h2 id="gnustep">GNUstep的实现</h2>
+
+<p>就下来就详细的总结一下autorelease的实现原理。由于NSObject类的Foundation框架并没有被开源，所以我们就研究一下GNUstep这个开源软件。</p>
+
+<p>首先看一个源代码</p>
+
+<p>```
+[obj autorelease]</p>
+
+<p>```</p>
+
+<p>这个源代码实际是调用了 NSObject类的autorelease方法。</p>
+
+<p>```
+-(id)autorelease
+{
+	[NSAutoreleasePool addObject:self];
+}</p>
+
+<p>```</p>
+
+<p>从以上这个代码中我们就可以分析出来，其实autorelease实际上就是调用了NSAutoreleasePool中的addObject方法</p>
+
+<p>看到了以上的内容，我们就需要详细的探讨一下NSAutoreleasePool的实现原理。以下是我摘要的源代码，因为NSAutoreleasePool的源代码的实现太复杂了，所以这里的源代码是经过简化后的</p>
+
+<p>NSAutoreleasePool.m addObject</p>
+
+<p>```
++(void)addObject:(id)anObj
+{
+	NSAutoreleasePool *pool = 取得我们正在运用的NSAutoreleasePool;
+	if（pool！=nil）{
+		[pool addObject: anObj];
+	} else {
+		NSLog(@”NSAutoreleasePool对象不存在”);
+	}
+}</p>
+
+<p>```
+addObject 类方法调用正在使用的NSAutoreleasePool对象的addObject，这句话可能会有一些难理解，没关系，接着看一组源代码。</p>
+
+<p>```
+NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+id obj = [[NSObject alloc] init];
+[obj autorelease];</p>
+
+<p>```</p>
+
+<p>通过上面的代码我们就可以看出，被赋予pool变量，那么就是正在使用NSAutoreleasePool的实例化对象。</p>
+
+<p>在我自己学习的过程中，还看到另外一种嵌套的方式</p>
+
+<p>```
+NSAutoreleasePool *pool0 = [[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool *pool1 = [[NSAutoreleasePool alloc] init];
+		NSAutoreleasePool *pool2 = [[NSAutoreleasePool alloc] init];</p>
+
+<pre><code>	id obj = [[NSObject alloc] init];
+	[obj autorelease];
+	
+	[pool2 drain];
+[pool1 drain]; [pool0 drain];
+</code></pre>
+
+<p>```</p>
+
+<p>在这种嵌套结构中，pool2为NSAutoreleasePool的使用对象，遵循使用最内测的对象想这个原则。</p>
+
+<p>看一下addObject的实现原理。其实就是调用了array的addObject方法</p>
+
+<p>```</p>
+
+<p>-（void）addObject ：（id）anObj
+{
+	[array addObject : anObj];
+}</p>
+
+<p>```</p>
+
+<p>以上就是GNUstep实现，其实GNUstep使用的就是连接列表，这跟NSNutableArray对象的中追加的原理是一样的，就是说如果我们调用了autorelease方法，这个调用autorelease方法的对象就会被追加到NSAutoreleasePool的数组中</p>
+
+<p>```
+[pool drain];</p>
+
+<p>```</p>
+
+<p>通过drain就可以删除正在使用NSAutoreleasePool的对象</p>
+
+<p>看一下drain的实现原理</p>
+
+<p>```
+-（void）drain
+{
+	for(id obj in array){
+		[obj release];
+	}
+	[array release];
+}</p>
+
+<p>```</p>
+
+<p>通过每次的循环都在调用release方法来实现释放。</p>
+
+<h2 id="section">苹果的实现</h2>
+
+<p>以下为objc4库中的autorelease实现原理</p>
+
+<p>```
+class AutoreleasePoolPage
+{
+	static inline void *push()
+	{
+		//在这里进行NSAutoreleasePool的生成
+	}</p>
+
+<pre><code>static inline void *pop()
+{
+	//废弃掉NSAutoreleasePool类对象
+	releaseAll();
+}
+static inline id autorelease(id obj)
+{
+	//这里就相当于NSAutoreleasePool类的addObject方法
+	AutoreleasePoolPage * autoreleasePoolPage = 取得正在使用AutoreleasePoolPage类的对象；
+	autoreleasePoolPage-&gt;add(obj);
+	
+}
+id *add(id obj)
+{
+	//讲对象追加到数组中
+}
+void releaseAll()
+{
+	//调用release实例
+} }
+</code></pre>
+
+<p>void *obj_ autoreleasePoolPush(void)
+{
+	return autoreleasePoolPage::push();
+}
+void *obj_ autoreleasePoolPop(void)
+{
+	return autoreleasePoolPage::pop(void *ctxt);
+}
+void *obj_ autorelease(id obj)
+{
+	return autoreleasePoolPage::autorelease(obj);
+}</p>
+
+<p>c++中虽然有类似NSNutableArray的动态数组，但是行为却和GNUstep的实现完全不同。</p>
+
+<p>```</p>
+
+<p>首先先来看一下NSAutoreleasePool类方法和autorelease方法的运行过程。以及和从从从c++的对象关系</p>
+
+<p>```
+NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+//相当于obj_ autoreleasePoolPush()</p>
+
+<p>id obj = [[NSObject alloc] init];</p>
+
+<p>[obj autorelease];
+//相当于*obj_ autorelease(obj)</p>
+
+<p>[pool drain];
+//相当于*obj_ autoreleasePoolPop(pool)</p>
+
+<p>```</p>
+
+
+                        <br>
+                    
+                    
+                    <div class="entry-tags text-center">
+                    
+                        <i class="icon-tags"></i>&nbsp;Tagged with <a href="http://localhost:4000/tags/index.html#iOS内存管理" data-toggle="tooltip" title="Posts tagged with iOS内存管理" rel="tag">iOS内存管理</a>
+                    
+                    </div>
+                    
+                    </div>
+        </div>
+                    <footer class="post-footer entry-meta">
+                        
+                        <div class="post-author text-center">                       
+	        <img src="http://localhost:4000/images/hmfaysal.jpg" alt="LastDay's photo" itemprop="image" class="post-avatar img-circle img-responsive"/>    
+	    <h4 class="bordered-bottom vcard author" itemprop="author" itemscope itemtype="http://schema.org/Person">By <span itemprop="name" class="fn"><a href="http://localhost:4000/about" title="About LastDay" itemprop="url">LastDay</a></span></h4>
+	    <p>一个单线程的iOS开发男孩</p>
+</div> 
+                        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+                    </footer>
+            </article>
+    </div>
+</div>
+
+<footer id="footer"  class="blog-background overlay text-center align-middle animated from-top" style="background-image: url(http://localhost:4000/images/back.jpg)" >
+
+
+    <div class="inner">
+        <div class="container">
+
+            <ul class="social-icons">
+            
+            <li>
+                <a href="http://facebook.com/hmfaysal" data-toggle="tooltip" title="LastDay on Facebook" target="_blank">
+                    <i class="icon-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://plus.google.com/u/0/102602916593522619858" data-toggle="tooltip" title="LastDay on Google+" target="_blank">
+                    <i class="icon-google-plus"></i>
+                </a>
+            </li>
+            
+            
+            
+            
+            <li>
+                <a href="http://github.com/https://github.com/MrLoong" data-toggle="tooltip" title="LastDay on Github" target="_blank">
+                    <i class="icon-github"></i>
+                </a>
+            </li>
+        </ul>
+            <div>
+                <a href="http://localhost:4000/about/">LastDay</a> &copy; 2015 &bull; All rights reserved.
+            </div>
+            <ul class="menu-items">
+            
+            <li>
+                
+                    <a href="http://localhost:4000/"><i class="icon-home"></i></a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/categories">Categories</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/tags">Tags</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/about">About</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li><a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
+        </ul>
+        </div>
+    </div>
+    
+    
+    
+</footer>
+
+    
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/waypoints.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/script.js"></script>
+<script type='text/javascript'>console.log("HMFaysal Omega Theme Version 2.0");</script>
+<script type='text/javascript'>console.log("https://alum.mit.edu/www/hmfaysal");</script>
+<script type='text/javascript'>$(document).ready(function(){$(".time").text(function(a,b){return Math.round(parseFloat(b))})});</script>
+
+<script type="text/javascript">
+
+/*      Slides       */
+
+$("a#slide").click(function(){
+    $("#sidebar,body,a#slide,#fade").addClass("slide")
+});
+
+$("#fade,#header,#posts-container").click(function(){
+    $("#sidebar,body,a#slide,#fade").removeClass("slide")
+});
+
+$("a#click-filter").click(function(){
+    $("#slide-filter").slideToggle("medium");
+    $("#slide-pages").slideOut("medium");
+});
+
+$("a#click-pages").click(function(){
+    $("#slide-pages").slideToggle("medium");
+    $("#slide-filter").slideOut("medium");
+});
+
+/*      End-Slides      */
+
+</script>
+
+
+<!-- Jekyll Simple Search option -->
+<script>
+  $(document).ready(function() {
+      $('.search-field').simpleJekyllSearch({
+          jsonFile : 'http://localhost:4000/search.json',
+          searchResults : '.search-results',
+          template : '<li><article><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></article></li>',
+          noResults: '<p>Nothing found.</p>'
+        });
+  });
+
+  (function( $, window, undefined ) {
+    
+     var bs = {
+          close: $(".icon-remove-sign"),
+          searchform: $(".search-form"),
+          canvas: $("body"),
+          dothis: $('.dosearch')
+      };
+    
+    bs.dothis.on('click', function() {
+      $('.search-wrapper').css({ display: "block" });
+      bs.searchform.toggleClass('active');
+      bs.searchform.find('input').focus();
+      bs.canvas.toggleClass('search-overlay');
+    });
+    
+      bs.close.on('click', function() {
+        $('.search-wrapper').removeAttr( 'style' );
+        bs.searchform.toggleClass('active');
+        bs.canvas.removeClass('search-overlay');
+    });
+  })( jQuery, window );
+</script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl = 
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-39365944-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'LastDay'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+</body>
+</html>

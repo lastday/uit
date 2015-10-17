@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<!--
+====================================================
+    __  ____  ______________  _______ ___    __ 
+   / / / /  |/  / ____/   \ \/ / ___//   |  / / 
+  / /_/ / /|_/ / /_  / /| |\  /\__ \/ /| | / /  
+ / __  / /  / / __/ / ___ |/ /___/ / ___ |/ /___
+/_/ /_/_/  /_/_/   /_/  |_/_//____/_/  |_/_____/
+                                                     
+====================================================
+Owner Name: Hossain Mohammad Faysal
+Profile: https://www.facebook.com/hmfaysal
+Version: 1.1
+Description: Awesome dude, awesome life
+====================================================
+-->
+<head>
+<meta charset="utf-8">
+<title>objective-c算法详解(一、链表) &#8211; LastDay的博客</title>
+<meta name="description" content="Link">
+<meta name="keywords" content="算法">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="objective-c算法详解(一、链表)">
+<meta property="og:description" content="Link">
+<meta property="og:url" content="http://localhost:4000/%E9%BE%99%E5%B0%91/first-link">
+<meta property="og:site_name" content="LastDay的博客">
+<meta property="og:image" content="http://localhost:4000/images/back.jpg">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/%E9%BE%99%E5%B0%91/first-link">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="LastDay的博客 Feed">
+<link rel="author" href="https://plus.google.com/u/0/102602916593522619858?rel=author">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/style.css" />
+
+<div class="search-wrapper">
+    <div class="search-form">
+        <input type="text" class="search-field" placeholder="Search...">
+        <i class="icon-remove-sign"></i>
+        <ul class="search-results post-list"></ul><!-- /.search-results -->
+    </div><!-- /.search-form -->
+</div><!-- ./search-wrapper -->
+
+
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+<body class="post-template" itemscope itemtype="http://schema.org/WebPage">  
+<div id="fade"></div>
+<a id="slide" class="animated fade"></a>
+<aside id="sidebar">
+    <nav id="navigation">
+    <h2>MENU</h2>
+    <hr>
+
+            <li>
+                    <a href="http://localhost:4000/">Home</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/categories">Categories</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/tags">Tags</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/about">About</a>
+                 </li>
+            
+           <li><a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
+    </nav>
+    
+    
+</aside>
+<header id="masthead" class="blog-background overlay align-center align-middle animated from-bottom"  style="background-image: url(http://localhost:4000/images/back.jpg)" itemscope itemtype="http://schema.org/Organization">
+
+
+    <button class="menu-button animated fade dosearch">
+        <i class="icon-search"></i>
+    </button>
+
+
+    <div class="inner">
+        <div class="container">
+            <a class="brand" href="http://localhost:4000" role="banner" itemprop="url">
+
+                
+
+            <h1 class="blog-title light" itemprop="name">
+                LastDay的博客
+            </h1>
+                
+            </a>
+        </div>
+    </div>
+    
+    
+    
+    
+</header>
+<div id="main" class="content" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+    <div class="container">
+        <div class="row">
+            <article class="post col-md-8 col-md-offset-2 hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            
+            
+            
+            
+            
+                    <header class="post-header entry-header">
+                    
+                        
+                        <h1 class="post-title text-center hyper lighter bordered-bottom entry-title" itemprop="headline">objective-c算法详解(一、链表)</h1>
+                        
+                        <div class="cursive" style="color: #000; font-style:italic;">Link</div>
+                        <div class="post-info text-center small">
+                            <span class="entry-date date published updated"><time datetime="2015-10-15T00:00:00-04:00" class="post-time" itemprop="datePublished">15 Oct 2015</time><span>
+                            in <span class="post-tags"><a href="http://localhost:4000/categories/index.html#龙少" data-toggle="tooltip" title="Other posts from the 龙少 category" rel="tag">龙少</a></span>&nbsp;<span class="post-tags"><i class="icon-time"></i>&nbsp;<span class="time">2.465</span> minutes read</span>
+                        </div>
+                    </header>
+                    <div class="post-body bordered-bottom" itemprop="description">
+                        
+                        <h1 id="section">链表的介绍：</h1>
+
+<p>链表可以说是一种最为基础的数据结构，在维护集合数据的时候拥有很大的帮助，尤其是在增，删上拥有很大的效率今天总结一下曾经学习的链表。在ios的开发中，掌握一些常用的算法可以帮助我们更加有效率的开发。
+链表的总类：</p>
+
+<ul>
+  <li>单链表</li>
+  <li>双向链表</li>
+  <li>循环链表</li>
+</ul>
+
+<p>今天先来讲述下单链表：元素之间由一个单独的指针链接。这种结构的链表允许从第一个元素开始遍历到最后一个元素。</p>
+
+<p>各元素之间通过一个指针连接起来而组成。每个元素包含两个部分：数据成员和一个被称为next的指针。通过这好种结构，将每个元素的next指针设置为指向其后面的元素。最后一个元素的Next设置为NULL，简单的表示链表的尾端。链表开始处的元素是”head“，链表的末尾的元素称为”tail“。</p>
+
+<p>图一</p>
+
+<p>根据上面说的，其实我们可以把链表看作一系列连续的元素，要知道这些元素是动态分配在内存中的。其实元素与元素之间的连接是为了保证我们能够访问到每个元素。如果其中有一个链接被丢失，那么从这个链接开始往后的所有链接都将被丢失。</p>
+
+<p>我曾经在一本书上看过一句话：“你的弱点又多弱，你的强度就有多强”，这句话来形容链表非常的恰当。</p>
+
+<p>进入今天的主题：</p>
+
+<h2 id="section-1">单链表接口的定义：</h2>
+
+<h3 id="section-2">初始化链表:</h3>
+
+<p><code>
+-(void)listInit :(List*) list;
+</code></p>
+
+<p>该函数必须在其他操作之前调用。，使用listInit初始化一个链表，方便我们执行其他操作。初始化非常简单，只需要将size设置为0，head与tail设置为null，就完成了初始化操作。</p>
+
+<h3 id="element">在指定的element后添加:</h3>
+
+<p>```
+-(int)listInsNext:(List*) list over:(ListElemt *) element over:(ListElemt *)newElement;</p>
+
+<p>```
+简单的说，插入操作就是对链表进行新的连接，例如有两个节点A和C，要在A节点后加入B节点。首先先让B的next指针指向C。然后C，然后A的next指针指向B。这样就完成了简单的操作。但是但是当插入到head位置的话，新元素前面就没有节点了，这样怎么办？很简单，只需要将新元素next指针指向当前链表的头部就可以了。当传入的element为空，直接插入到头部就可以了。</p>
+
+<p>图一：</p>
+
+<p><img src="http://img.blog.csdn.net/20150808165425007" alt="这里写图片描述" /></p>
+
+<h3 id="element-1">移除指定element后的元素:</h3>
+<p>```
+-(int)listRemNext:(List*) list over:(ListElemt *) element;</p>
+
+<p>```
+移除element身后的元素，而不是element本身，至于为什么，我们后在以后进行说明。需要考虑两点，移除头节点，以及其他节点。
+操作其实很简单。例如有A，B，C三个节点，我们只需要申请一个D，让D指向A的下一个元素，然后A的next指向A的next的next。这样连接中我们就将B直接去掉，剩下A，C。之后<a href="http://www.oschina.net/translate/automatic-reference-counting-on-ios">ARC</a>会帮我们自动回收掉B</p>
+
+<p>图二：</p>
+
+<p><img src="http://img.blog.csdn.net/20150808165646941" alt="这里写图片描述" /></p>
+
+<h3 id="section-3">输出链表</h3>
+
+<p>```
+-(void)outPut:(List*) list;</p>
+
+<p>```
+采用一个循环，初始化一个指针pre，让这个指针指向list的head。每次循环后进行判断，并且重新规划：pre ＝ pre－&gt;next</p>
+
+<h3 id="listlistelemt">以下为一些宏定义，方便我们快速访问和监测List和ListElemt：</h3>
+
+<p>```
+#define list_size(list)((list)-&gt;size)</p>
+
+<h1 id="define-listheadlistlist-head">define list_head(list)((list)-&gt;head)</h1>
+<p>#define list_tail(list)((list)-&gt;tail)
+#define list_is_head(list,element)((element)==(list)-&gt;head ? 1:0)
+#define list_is_tail(element)((element)-&gt;next = NULL ? 1：0)
+#define list_data(element)((element)-&gt;data)
+#define list_next(element)((element)-&gt;data)</p>
+
+<p>```</p>
+
+<p>ListElemt.h代码：</p>
+
+<p>```
+//
+//  ListElemt.h
+//  ok
+//
+//  Created by MrLoong on 15/8/8.
+//  Copyright (c) 2015年 MrLoong. All rights reserved.
+//</p>
+
+<h1 id="import-foundationfoundationh">import &lt;Foundation/Foundation.h&gt;</h1>
+
+<p>@interface ListElemt : NSObject{
+    @public id data;
+    @public ListElemt *next;
+}
+@end</p>
+
+<p>```</p>
+
+<p>list.h代码如下：</p>
+
+<p>```</p>
+
+<p>//  List.h
+//  Created by MrLoong on 15/8/8.
+//  Copyright (c) 2015年 MrLoong. All rights reserved.
+//</p>
+
+<h1 id="import-foundationfoundationh-1">import &lt;Foundation/Foundation.h&gt;</h1>
+<p>#import “ListElemt.h”</p>
+
+<p>@interface List : NSObject{
+   @public ListElemt <em>head;
+   @public ListElemt *tail;
+   @public int size;
+}
+//初始化链表
+-(void)listInit :(List</em>) list;
+//在指定的element后添加newElement
+-(int)listInsNext:(List<em>) list over:(ListElemt *) element over:(ListElemt *)newElement;
+//移除指定element后的元素
+-(int)listRemNext:(List</em>) list over:(ListElemt <em>) element;
+//输出链表
+-(void)outPut:(List</em>) list;</p>
+
+<h1 id="define-listsizelistlist-size">define list_size(list)((list)-&gt;size)</h1>
+
+<h1 id="define-listheadlistlist-head-1">define list_head(list)((list)-&gt;head)</h1>
+<p>#define list_tail(list)((list)-&gt;tail)
+#define list_is_head(list,element)((element)==(list)-&gt;head ? 1:0)
+#define list_is_tail(element)((element)-&gt;next = NULL ? 1：0)
+#define list_data(element)((element)-&gt;data)
+#define list_next(element)((element)-&gt;data)</p>
+
+<p>@end</p>
+
+<p>```</p>
+
+<p>list.m代码如下</p>
+
+<p>```
+//
+//  List.m
+//  ok
+//
+//  Created by MrLoong on 15/8/8.
+//  Copyright (c) 2015年 MrLoong. All rights reserved.
+//</p>
+
+<h1 id="import-listh">import “List.h”</h1>
+
+<p>@implementation List
+//初始化链表
+-(void) listInit:(List *)list{
+    list-&gt;size = 0;
+    list-&gt;head = NULL;
+    list-&gt;tail = NULL;
+    return;
+}</p>
+
+<p>//在元素element后插入newElement</p>
+
+<p>-(int)listInsNext:(List *)list over:(ListElemt *)element over:(ListElemt *)newElement{</p>
+
+<pre><code>if(newElement==NULL){
+    return -1;
+}
+
+if(element==NULL){
+    if(list_size(list)==0){
+        list-&gt;tail = newElement;
+    }
+    newElement-&gt;next = list-&gt;head;
+    list-&gt;head = newElement;
+    
+}
+else{
+    if(element==NULL){
+        list-&gt;tail = newElement;
+    }
+    newElement-&gt;next = element-&gt;next;
+    element-&gt;next = newElement;
+}
+
+list-&gt;size++;
+
+return 0; }
+</code></pre>
+
+<p>//移除指定element后的元素
+-(int)listRemNext:(List *)list over:(ListElemt *)element{</p>
+
+<pre><code>ListElemt *oldEmement;
+
+if(list_size(list)==0){
+    return -1;
+}
+if (element==NULL) {
+    oldEmement = list-&gt;head;
+    list-&gt;head = list-&gt;head-&gt;next;
+    
+    if(list_size(list)==0){
+        list-&gt;tail = NULL;
+    }
+}
+else{
+    if(element-&gt;next==NULL){
+        return -1;
+    }
+    oldEmement = element-&gt;next;
+    element-&gt;next = element-&gt;next-&gt;next;
+    
+    if(element-&gt;next == NULL){
+        list-&gt;tail = element;
+    }
+}    // free((__bridge void *)(oldEmement));
+return 0; }
+</code></pre>
+
+<p>//输出链表
+-(void)outPut:(List *)list{
+    ListElemt *pre = list-&gt;head;
+    while (pre!=nil) {
+        NSLog(@”%@”,pre-&gt;data);
+        pre = pre-&gt;next;</p>
+
+<pre><code>} }
+</code></pre>
+
+<p>@end</p>
+
+<p>```</p>
+
+<p>main.m代码：</p>
+
+<p>```
+//
+//  main.m
+//  ok
+//
+//  Created by MrLoong on 15/8/8.
+//  Copyright (c) 2015年 MrLoong. All rights reserved.
+//</p>
+
+<h1 id="import-foundationfoundationh-2">import &lt;Foundation/Foundation.h&gt;</h1>
+<p>#import “List.h”
+#import “ListElemt.h”</p>
+
+<p>int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        //创建元素
+        List *list = [[List alloc] init];
+        [list listInit:list];</p>
+
+<pre><code>    ListElemt *element1 = [[ListElemt alloc]init];
+    element1-&gt;data = [NSNumber numberWithInt:1];
+    
+    ListElemt *element2 = [[ListElemt alloc]init];
+    element2-&gt;data = [NSNumber numberWithInt:2];
+    
+    ListElemt *element3 = [[ListElemt alloc]init];
+    element3-&gt;data = [NSNumber numberWithInt:3];
+    
+    
+    ListElemt *element4 = [[ListElemt alloc]init];
+    element4-&gt;data = [NSNumber numberWithInt:4];
+    
+    
+    ListElemt *element5 = [[ListElemt alloc]init];
+    element5-&gt;data = [NSNumber numberWithInt:5];
+    
+    ListElemt *element6 = [[ListElemt alloc]init];
+    element6-&gt;data = [NSNumber numberWithInt:6];
+    //创建元素
+    [list listInsNext:list over:list-&gt;head over:element1];
+    [list listInsNext:list over:element1 over:element2];
+    [list listInsNext:list over:element2 over:element3];
+    [list listInsNext:list over:element3 over:element4];
+    [list listInsNext:list over:element4 over:element5];
+    [list listInsNext:list over:element5 over:element6];
+
+    
+    [list outPut:list];
+    //删除element2后的元素element3
+    [list listRemNext:list over:element2];
+    
+    printf("===========================================\n");
+    printf("插入完成\n");
+    printf("===========================================\n");
+
+    
+    [list outPut:list];
+    printf("===========================================\n");
+    printf("删除完成\n");
+    printf("===========================================\n");
+}
+return 0; }
+</code></pre>
+
+<p>```</p>
+
+
+                        <br>
+                    
+                    
+                    <div class="entry-tags text-center">
+                    
+                        <i class="icon-tags"></i>&nbsp;Tagged with <a href="http://localhost:4000/tags/index.html#算法" data-toggle="tooltip" title="Posts tagged with 算法" rel="tag">算法</a>
+                    
+                    </div>
+                    
+                    </div>
+        </div>
+                    <footer class="post-footer entry-meta">
+                        
+                        <div class="post-author text-center">                       
+	        <img src="http://localhost:4000/images/hmfaysal.jpg" alt="LastDay's photo" itemprop="image" class="post-avatar img-circle img-responsive"/>    
+	    <h4 class="bordered-bottom vcard author" itemprop="author" itemscope itemtype="http://schema.org/Person">By <span itemprop="name" class="fn"><a href="http://localhost:4000/about" title="About LastDay" itemprop="url">LastDay</a></span></h4>
+	    <p>一个单线程的iOS开发男孩</p>
+</div> 
+                        
+                    </footer>
+            </article>
+    </div>
+</div>
+
+<footer id="footer"  class="blog-background overlay text-center align-middle animated from-top" style="background-image: url(http://localhost:4000/images/back.jpg)" >
+
+
+    <div class="inner">
+        <div class="container">
+
+            <ul class="social-icons">
+            
+            <li>
+                <a href="http://facebook.com/hmfaysal" data-toggle="tooltip" title="LastDay on Facebook" target="_blank">
+                    <i class="icon-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://plus.google.com/u/0/102602916593522619858" data-toggle="tooltip" title="LastDay on Google+" target="_blank">
+                    <i class="icon-google-plus"></i>
+                </a>
+            </li>
+            
+            
+            
+            
+            <li>
+                <a href="http://github.com/https://github.com/MrLoong" data-toggle="tooltip" title="LastDay on Github" target="_blank">
+                    <i class="icon-github"></i>
+                </a>
+            </li>
+        </ul>
+            <div>
+                <a href="http://localhost:4000/about/">LastDay</a> &copy; 2015 &bull; All rights reserved.
+            </div>
+            <ul class="menu-items">
+            
+            <li>
+                
+                    <a href="http://localhost:4000/"><i class="icon-home"></i></a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/categories">Categories</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/tags">Tags</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/about">About</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li><a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
+        </ul>
+        </div>
+    </div>
+    
+    
+    
+</footer>
+
+    
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/waypoints.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/script.js"></script>
+<script type='text/javascript'>console.log("HMFaysal Omega Theme Version 2.0");</script>
+<script type='text/javascript'>console.log("https://alum.mit.edu/www/hmfaysal");</script>
+<script type='text/javascript'>$(document).ready(function(){$(".time").text(function(a,b){return Math.round(parseFloat(b))})});</script>
+
+<script type="text/javascript">
+
+/*      Slides       */
+
+$("a#slide").click(function(){
+    $("#sidebar,body,a#slide,#fade").addClass("slide")
+});
+
+$("#fade,#header,#posts-container").click(function(){
+    $("#sidebar,body,a#slide,#fade").removeClass("slide")
+});
+
+$("a#click-filter").click(function(){
+    $("#slide-filter").slideToggle("medium");
+    $("#slide-pages").slideOut("medium");
+});
+
+$("a#click-pages").click(function(){
+    $("#slide-pages").slideToggle("medium");
+    $("#slide-filter").slideOut("medium");
+});
+
+/*      End-Slides      */
+
+</script>
+
+
+<!-- Jekyll Simple Search option -->
+<script>
+  $(document).ready(function() {
+      $('.search-field').simpleJekyllSearch({
+          jsonFile : 'http://localhost:4000/search.json',
+          searchResults : '.search-results',
+          template : '<li><article><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></article></li>',
+          noResults: '<p>Nothing found.</p>'
+        });
+  });
+
+  (function( $, window, undefined ) {
+    
+     var bs = {
+          close: $(".icon-remove-sign"),
+          searchform: $(".search-form"),
+          canvas: $("body"),
+          dothis: $('.dosearch')
+      };
+    
+    bs.dothis.on('click', function() {
+      $('.search-wrapper').css({ display: "block" });
+      bs.searchform.toggleClass('active');
+      bs.searchform.find('input').focus();
+      bs.canvas.toggleClass('search-overlay');
+    });
+    
+      bs.close.on('click', function() {
+        $('.search-wrapper').removeAttr( 'style' );
+        bs.searchform.toggleClass('active');
+        bs.canvas.removeClass('search-overlay');
+    });
+  })( jQuery, window );
+</script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl = 
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-39365944-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+ 
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<!--
+====================================================
+    __  ____  ______________  _______ ___    __ 
+   / / / /  |/  / ____/   \ \/ / ___//   |  / / 
+  / /_/ / /|_/ / /_  / /| |\  /\__ \/ /| | / /  
+ / __  / /  / / __/ / ___ |/ /___/ / ___ |/ /___
+/_/ /_/_/  /_/_/   /_/  |_/_//____/_/  |_/_____/
+                                                     
+====================================================
+Owner Name: Hossain Mohammad Faysal
+Profile: https://www.facebook.com/hmfaysal
+Version: 1.1
+Description: Awesome dude, awesome life
+====================================================
+-->
+<head>
+<meta charset="utf-8">
+<title>IP协议的那些事（总结） &#8211; LastDay的博客</title>
+<meta name="description" content="Sleek, intuitive, and powerful mobile first Jekyll theme">
+<meta name="keywords" content="TCP/IP">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IP协议的那些事（总结）">
+<meta property="og:description" content="Sleek, intuitive, and powerful mobile first Jekyll theme">
+<meta property="og:url" content="http://localhost:4000/theme-setup/first-IP">
+<meta property="og:site_name" content="LastDay的博客">
+<meta property="og:image" content="http://localhost:4000/images/back.jpg">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/theme-setup/first-IP">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="LastDay的博客 Feed">
+<link rel="author" href="https://plus.google.com/u/0/102602916593522619858?rel=author">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/style.css" />
+
+<div class="search-wrapper">
+    <div class="search-form">
+        <input type="text" class="search-field" placeholder="Search...">
+        <i class="icon-remove-sign"></i>
+        <ul class="search-results post-list"></ul><!-- /.search-results -->
+    </div><!-- /.search-form -->
+</div><!-- ./search-wrapper -->
+
+
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+<body class="post-template" itemscope itemtype="http://schema.org/WebPage">  
+<div id="fade"></div>
+<a id="slide" class="animated fade"></a>
+<aside id="sidebar">
+    <nav id="navigation">
+    <h2>MENU</h2>
+    <hr>
+
+            <li>
+                    <a href="http://localhost:4000/">Home</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/categories">Categories</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/tags">Tags</a>
+                 </li>
+
+            <li>
+                    <a href="http://localhost:4000/about">About</a>
+                 </li>
+            
+           <li><a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
+    </nav>
+    
+    
+</aside>
+<header id="masthead" class="blog-background overlay align-center align-middle animated from-bottom"  style="background-image: url(http://localhost:4000/images/back.jpg)" itemscope itemtype="http://schema.org/Organization">
+
+
+    <button class="menu-button animated fade dosearch">
+        <i class="icon-search"></i>
+    </button>
+
+
+    <div class="inner">
+        <div class="container">
+            <a class="brand" href="http://localhost:4000" role="banner" itemprop="url">
+
+                
+
+            <h1 class="blog-title light" itemprop="name">
+                LastDay的博客
+            </h1>
+                
+            </a>
+        </div>
+    </div>
+    
+    
+    
+    
+</header>
+<div id="main" class="content" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+    <div class="container">
+        <div class="row">
+            <article class="post col-md-8 col-md-offset-2 hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            
+            
+            
+            
+            
+                    <header class="post-header entry-header">
+                    
+                        
+                        <h1 class="post-title text-center hyper lighter bordered-bottom entry-title" itemprop="headline">IP协议的那些事（总结）</h1>
+                        
+                        <div class="cursive" style="color: #000; font-style:italic;">Sleek, intuitive, and powerful mobile first Jekyll theme</div>
+                        <div class="post-info text-center small">
+                            <span class="entry-date date published updated"><time datetime="2015-10-14T00:00:00-04:00" class="post-time" itemprop="datePublished">14 Oct 2015</time><span>
+                            in <span class="post-tags"><a href="http://localhost:4000/categories/index.html#theme-setup" data-toggle="tooltip" title="Other posts from the Theme-setup category" rel="tag">Theme-setup</a></span>&nbsp;<span class="post-tags"><i class="icon-time"></i>&nbsp;Less than 1 minute read</span>
+                        </div>
+                    </header>
+                    <div class="post-body bordered-bottom" itemprop="description">
+                        
+                        <h1 id="iptcp">IP协议是TCP协议栈中的核心协议，也是网络编程的基础之一。</h1>
+
+<h2 id="section">网络层概述</h2>
+
+<h3 id="ip">IP服务特点:</h3>
+<p>IP协议为上层协议提供无状态，无连接，不可靠的服务。</p>
+
+<ul>
+  <li>无状态：IP通信双方不同步状态传输信息，因此所有IP数据报的发送和接收都是相互独立的，这样也就造成了它无法处理乱序，重复的IP数据报。相对于面向连接而设定的，例如TCP协议，它能够自己处理乱序，重复的报文段。他递交给上层的内容绝对是有序的正确的。但是IP协议的状态也是有优点的，它简单高效，因为我们无需为保证它的状态而分配一些内核数据结构。</li>
+  <li>无连接：通信双方都不长久的维持对方的任何信息，那么就需要上层协议去指定传输的IP地址。</li>
+  <li>不可靠服务：不可靠指的是IP协议不能保证IP数据报完整并且准确的到达接收端。因此使用IP的上层协议需要自己做数据确认，超时重传等可靠传输机制。</li>
+</ul>
+
+<p>…</p>
+
+<h3 id="ipv4">IPv4头部结构:</h3>
+
+<p>图一：</p>
+
+<p><img src="http://img.blog.csdn.net/20150809211053157" alt="这里写图片描述" /></p>
+
+<p>IPv4头部结构包含20个字节。另外最多包含40个选项字节。</p>
+
+<ul>
+  <li>4位版本号：指定IP协议的版本</li>
+  <li>4位头部长度：标识有多少个四字节。</li>
+  <li>8位服务类型（TOS）：包括一个3位的优先权字段（现在已经被忽律），4位TOS字段（最小延时，最大吞吐量，最高可靠性，最小费用），1位保留字段。以上信息决定了IP协议的可弹性。</li>
+  <li>16位总长度（字节数）：整个IP数据报的长度。就是说IP数据报的最大程度就是2^16－1。因为MTU的限制。最大传输不可能达到这个值。</li>
+</ul>
+
+<p>＝＝＝＝＝＝分片传输实现原理＝＝＝＝＝＝＝＝＝</p>
+
+<ul>
+  <li>16位标识别：唯一标识主机发送的每一个数据报。初始值有系统随机生成。每发送一个数据报，该值就＋1.因此同一个数据报的分片都具有相同的标识值</li>
+  <li>
+    <p>3位标志：</p>
+
+    <p>（1）第一位是有保留的</p>
+
+    <p>（2）第二位表示禁止分片（如果对这位进行了设置，IP模块将不会对数据报进行分片，所以可以想象一下我们刚才提到的，如果这个数据报的长度超过MTU，这段数据报就会被丢弃，返回ICMP差错报文）</p>
+
+    <p>（3）第三位表示等多分片（除了IP数据报的最后一个分片外，其他分片都设置为1）。</p>
+  </li>
+  <li>13位偏移：是分片相对原始IP数据报开始处的偏移。</li>
+</ul>
+
+<p>这三个字段协同工作行形成了IP分段的功能。</p>
+
+<p>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝</p>
+
+<ul>
+  <li>8位生存时间（TTL）：它是数据报到达目的地前允许经过的路由跳数。在发送过程中，每经过一个路由，该值就减1.当TTL位0时，路由器会丢弃这个数据报，返回ICMP差错报文。它可以防止数据陷入路由循环。</li>
+  <li>8位协议涌来区分上层协议。ICMP位1，TCP为6，UDP位17</li>
+  <li>16位头部校验和：它是由发送端进行填充。接收端对其进行CRC校验算法，来检验头信息在传输过程中是否被损坏。</li>
+  <li>32位原端IP：表示发送端IP</li>
+  <li>32位目的IP：表示接受端IP</li>
+  <li>IPv4头部可变长的选项部分，最多包含401个字节，可选的IP选项包括：（1）纪录路由，（2）时间戳，（3）松散源路由选择，（4）严格路由选择   （这些的介绍会在以后进行分享）</li>
+</ul>
+
+<p>IP协议是TCP协议栈中的核心协议，也是网络编程的基础之一。
+我们接着在<a href="http://blog.csdn.net/lastdays_l/article/details/47395921">IP协议解读（一）</a>继续学习</p>
+
+<h2 id="section-1">网络层作用</h2>
+
+<h3 id="ip-1">IP分片：</h3>
+<ul>
+  <li>
+    <p>IP数据报的长度超过帧的MTU时，将会被分片传输。分片可能发生在发送端，也可能发生在中转路由器上，并且可能在传输过程中被多次分片。最终会在接收器上被IP模块重新组装。</p>
+  </li>
+  <li>在<a href="http://blog.csdn.net/lastdays_l/article/details/47395921">IP协议解读（一）</a>中讲述了16位数据报标识、3位的标识，13位的片偏移给分片和重组提供了足够的信息。一个IP数据报的每个分片都具有自己的头部。他们具有相同的标识值，但具有不同的片偏移。</li>
+  <li>
+    <p>以太网的MTU位1500字节，因此它能携带的最大字节量位1480字节，因为IP头部包含20个字节。假如我们使用以太网帧传输用IP数据报封装的1481个字节的ICMP数据报。这个时候&gt;1480字节，所以就会出现分片现象</p>
+
+    <p>###那么1481个字节的数据+20字节的IP头部=1501字节的IP数据报=IP分片（1500字节）+IP分片（21字节） 
+  结构如图所示：</p>
+  </li>
+</ul>
+
+<p><img src="http://img.blog.csdn.net/20150811121717075" alt="这里写图片描述" /></p>
+
+<p>从以上的图片我可以分析出来，ICMP头部的8个字节被分配到第一个分片中，其中1472字节的ICMP的数据也被分配到第一个分片中，这样IP头+ICMP头部结构+部分ICMP数据组成了最大的IP分片（1500字节），剩下的一个个字节的ICMP数据被分配到第二个IP分片中（21字节）</p>
+
+<p>下面我们用实例演示：</p>
+
+<p>我们使用ping命令指定每次发送的大小位1473个字节</p>
+
+<p>```
+ping www.baidu.com -s 1473</p>
+
+<p>```</p>
+
+<p><img src="http://img.blog.csdn.net/20150811121838596" alt="这里写图片描述" /></p>
+
+<p>我们使用tcpdump命令抓取ping过程中的icmp数据包</p>
+
+<p>```
+tcpdump -ntv -i eth0 icmp</p>
+
+<p>```
+<img src="http://img.blog.csdn.net/20150811121920417" alt="这里写图片描述" /></p>
+
+<p>===============查看分析抓去结果=====================</p>
+
+<p>结果如图所示：</p>
+
+<p><img src="http://img.blog.csdn.net/20150811122731873" alt="这里写图片描述" /></p>
+
+<p>从图片中我们可以看出，前两个数据报的ip分片id（标识值）都是27300，说明这两个是同一个分片，第一个分片的offset（偏移值）为0，第二个分片的offset（偏移值）为0位1480.根据信息显示，第一个ICMP占1480个字节，第二个长度为21.</p>
+
+<h3 id="ip-2">IP路由选择机制：</h3>
+
+<p>路由选择是IP协议的核心任务，指定了发送数据报到目标路径的途径</p>
+
+<p><img src="http://img.blog.csdn.net/20150811122637878" alt="这里写图片描述" /></p>
+
+<ul>
+  <li>当IP模块接受到来自网络驱动程序发来的IP数据报时，首先对头部进行CRC校验，确定这个数据包在传输过程中没有被损坏。</li>
+  <li>如果发现IP头部信息中带有<strong>源站选路</strong>选项，那么IP模块调用数据报转发子模块处理这个数据报。</li>
+  <li>如果这个IP数据报头部结构中目标IP地址是本机的IP地址或是广播地址，就是说明这个数据报是发送给本机的IP模块就必须根据数据报的头部结构协议字段将它发给哪个上层应用。</li>
+  <li>如果IP模块发现这个数据报不是发送给本机的，同样也掉中转发子模块处理这个数据报，转发子模块首先需要检验这个数据报是否被允许转发。不允许的话这个数据报就会被丢弃。允许的话数据报转发子模块将对这个数据报进行一系列的操作，然后将它交给IP数据报输出子模块。</li>
+  <li>其实呢，IP数据报应该发送到哪一个吓一跳路由，经过哪个网卡来发送，是<strong>计算吓一跳</strong>路由这个模块完成的。</li>
+  <li>IP模块实现数据报路由的核心数据结构就是<strong>路由表</strong>，这个表是按照目的IP进行分类。</li>
+  <li>IP输出队列中是所有等待发出的数据报。</li>
+  <li>虚线箭头是整个路由表的更新过程</li>
+</ul>
+
+<p>IP路由选择过程：</p>
+
+<ul>
+  <li>查找完全匹配的主机地址，如果找到就是用该路由项，如果未找到，进入下一个步骤</li>
+  <li>查找相同网络ID的网络IP地址，如果找到就是用该路由项，如果未找到，进入下第三个步骤</li>
+  <li>选择默认路由项，这意味着下一跳的路由地址是网关</li>
+</ul>
+
+<h3 id="ip-3">IP转发过程：</h3>
+
+<p>路由器转发模块的执行过程如下：</p>
+
+<ul>
+  <li>检查数据报头部的TTL值（TTL为0丢弃这个数据报）。</li>
+  <li>查看数据包的严格源路由的选择选项，如果被设置，检测数据报的目的IP地址是否和本机的某个IP地址相同，如果不是，发送一个ICMP差错报文。</li>
+  <li>给源端发送一个ICMP重定向报文（下一个文章分享）。</li>
+  <li>将TTL值减1</li>
+  <li>处理IP头部选项</li>
+  <li>如果有必要，执行IP分片操作</li>
+</ul>
+
+<h3 id="section-2">路由表更新：</h3>
+
+<p>路由表必须具备更新，反应网络中的连接的变化，这样IP模块才能准确，高效的转发数据报。</p>
+
+<p>进行实例演示。</p>
+
+<p>Linux下使用明route命令查看当前主机下的路由表信息。
+<img src="http://img.blog.csdn.net/20150811122852036" alt="这里写图片描述" /></p>
+
+<p>第一行表示子系统下的默认路由</p>
+
+<p>使用route命令添加路由表</p>
+
+<p><img src="http://img.blog.csdn.net/20150811123013217" alt="这里写图片描述" /></p>
+
+<p>删除对应项</p>
+
+<p><img src="http://img.blog.csdn.net/20150811123030527" alt="这里写图片描述" /></p>
+
+<p>删除默认路由项，这样做的后果就是无法访问因特网。</p>
+
+<p><img src="http://img.blog.csdn.net/20150811123044978" alt="这里写图片描述" /></p>
+
+<p>今天我们来介绍网络层中的ICMP协议</p>
+
+<h2 id="icmp">ICMP报文格式</h2>
+
+<p>图一：</p>
+
+<p><img src="http://img.blog.csdn.net/20150812131618110" alt="这里写图片描述" /></p>
+
+<p>从图片上我们可以分析出，前三位的字段都是固定的，8位类型字段，8位代码字段，16位校验和字段。其他字段因ICMP报文类型不同而不同。8位类型和8位代码一起决定了报文的类型。</p>
+
+<h2 id="icmp-1">ICMP查询格式</h2>
+
+<h3 id="icmp4">ICMP查询报文共有4种</h3>
+
+<ul>
+  <li>回送请求和回答：由主机和路由器向一个特定的主机和路由器发送询问，收到请求的主机必须给源主机发送回送应答报文，用来测试目标主机是否可达以及了解其他状态</li>
+  <li>时间戳请求和回答：它允许系统向另一个系统查询当前的时间，该ICMP的好处是他提供了毫秒级的分辨率。</li>
+  <li>掩码地址请求和回答：主机使用ICMP地址掩码地址请求报文可以向子网掩码服务器得到某个接口的地址掩码。系统广播他的ICMP请求报文。</li>
+  <li>路由器询问和通过报文：主机使用ICMP路由器询问连接在本网络上的路由器是否正常工作。</li>
+</ul>
+
+<h2 id="icmp-2">ICMP差错报文</h2>
+
+<h3 id="icmp5">ICMP差错报文共有5种：</h3>
+
+<ul>
+  <li>终点不可达：网络不可达，主机不可达，协议不可达，端口不可达，源路由失败</li>
+  <li>源站抑制：当路由器或主机因为拥塞丢弃数据包时，就向源站发送源站抑制报文，使源站知道应当将发送数据报的速度放慢。</li>
+  <li>时间超过：路由器收到生存时间为0的数据报时，除丢弃该数据报外还要向源站发送时间超时报文</li>
+  <li>参数问题差：当路由器的目的主机收到的数据报首部中的字段不正确的时候，丢弃该数据报，同时向源地址发送ICMP参数问题报文。</li>
+  <li>重定向报文：路由器将改变路由报文，将发送给主机，让主机知道，下一次的数据报应该发送给另一个路由器。</li>
+</ul>
+
+                        <br>
+                    
+                    
+                    <div class="entry-tags text-center">
+                    
+                        <i class="icon-tags"></i>&nbsp;Tagged with <a href="http://localhost:4000/tags/index.html#TCP/IP" data-toggle="tooltip" title="Posts tagged with TCP/IP" rel="tag">TCP/IP</a>
+                    
+                    </div>
+                    
+                    </div>
+        </div>
+                    <footer class="post-footer entry-meta">
+                        
+                        <div class="post-author text-center">                       
+	        <img src="http://localhost:4000/images/hmfaysal.jpg" alt="LastDay's photo" itemprop="image" class="post-avatar img-circle img-responsive"/>    
+	    <h4 class="bordered-bottom vcard author" itemprop="author" itemscope itemtype="http://schema.org/Person">By <span itemprop="name" class="fn"><a href="http://localhost:4000/about" title="About LastDay" itemprop="url">LastDay</a></span></h4>
+	    <p>一个单线程的iOS开发男孩</p>
+</div> 
+                        <div id="disqus_thread"></div><!-- /#disqus_thread -->
+                    </footer>
+            </article>
+    </div>
+</div>
+
+<footer id="footer"  class="blog-background overlay text-center align-middle animated from-top" style="background-image: url(http://localhost:4000/images/back.jpg)" >
+
+
+    <div class="inner">
+        <div class="container">
+
+            <ul class="social-icons">
+            
+            <li>
+                <a href="http://facebook.com/hmfaysal" data-toggle="tooltip" title="LastDay on Facebook" target="_blank">
+                    <i class="icon-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://plus.google.com/u/0/102602916593522619858" data-toggle="tooltip" title="LastDay on Google+" target="_blank">
+                    <i class="icon-google-plus"></i>
+                </a>
+            </li>
+            
+            
+            
+            
+            <li>
+                <a href="http://github.com/https://github.com/MrLoong" data-toggle="tooltip" title="LastDay on Github" target="_blank">
+                    <i class="icon-github"></i>
+                </a>
+            </li>
+        </ul>
+            <div>
+                <a href="http://localhost:4000/about/">LastDay</a> &copy; 2015 &bull; All rights reserved.
+            </div>
+            <ul class="menu-items">
+            
+            <li>
+                
+                    <a href="http://localhost:4000/"><i class="icon-home"></i></a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/categories">Categories</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/tags">Tags</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li>
+                
+                    <a href="http://localhost:4000/about">About</a>&nbsp;&bull;
+                 
+            </li>
+            
+            <li><a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
+        </ul>
+        </div>
+    </div>
+    
+    
+    
+</footer>
+
+    
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/waypoints.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/script.js"></script>
+<script type='text/javascript'>console.log("HMFaysal Omega Theme Version 2.0");</script>
+<script type='text/javascript'>console.log("https://alum.mit.edu/www/hmfaysal");</script>
+<script type='text/javascript'>$(document).ready(function(){$(".time").text(function(a,b){return Math.round(parseFloat(b))})});</script>
+
+<script type="text/javascript">
+
+/*      Slides       */
+
+$("a#slide").click(function(){
+    $("#sidebar,body,a#slide,#fade").addClass("slide")
+});
+
+$("#fade,#header,#posts-container").click(function(){
+    $("#sidebar,body,a#slide,#fade").removeClass("slide")
+});
+
+$("a#click-filter").click(function(){
+    $("#slide-filter").slideToggle("medium");
+    $("#slide-pages").slideOut("medium");
+});
+
+$("a#click-pages").click(function(){
+    $("#slide-pages").slideToggle("medium");
+    $("#slide-filter").slideOut("medium");
+});
+
+/*      End-Slides      */
+
+</script>
+
+
+<!-- Jekyll Simple Search option -->
+<script>
+  $(document).ready(function() {
+      $('.search-field').simpleJekyllSearch({
+          jsonFile : 'http://localhost:4000/search.json',
+          searchResults : '.search-results',
+          template : '<li><article><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></article></li>',
+          noResults: '<p>Nothing found.</p>'
+        });
+  });
+
+  (function( $, window, undefined ) {
+    
+     var bs = {
+          close: $(".icon-remove-sign"),
+          searchform: $(".search-form"),
+          canvas: $("body"),
+          dothis: $('.dosearch')
+      };
+    
+    bs.dothis.on('click', function() {
+      $('.search-wrapper').css({ display: "block" });
+      bs.searchform.toggleClass('active');
+      bs.searchform.find('input').focus();
+      bs.canvas.toggleClass('search-overlay');
+    });
+    
+      bs.close.on('click', function() {
+        $('.search-wrapper').removeAttr( 'style' );
+        bs.searchform.toggleClass('active');
+        bs.canvas.removeClass('search-overlay');
+    });
+  })( jQuery, window );
+</script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl = 
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-39365944-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'LastDay'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+</body>
+</html>
