@@ -1,8 +1,7 @@
-
 ---
 layout: post
-title: “DATA”
-description: Week 8
+title: "DATA"
+description: DATA
 headline: 10月24日
 category: UIT Training
 tags:  
@@ -11,7 +10,6 @@ imagefeature: "back.jpg"
 comments: true
 mathjax: 
 ---
-
 
 ~~~
 override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -25,7 +23,8 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
 ~~~
 
-```
+~~~
+
 {
     "status": "ok",
     "name": "耿志博",
@@ -477,14 +476,14 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     "term": 15
 }
 
-```
+~~~
 
 
 
 
 
 
-```
+~~~
 {
     "data": [
         {
@@ -834,4 +833,4 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     ]
 }
 
-```
+~~~
